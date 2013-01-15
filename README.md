@@ -17,8 +17,8 @@ although, originally, kbuild system were written for Linux Kernel.
 
 This project includes a pretty simple application with Kbuild system.
 Some files needed for Kbuild features were copied from Linux Kernel.
-Copied files include the top-level `Makefile` and some programs and makefiles
-under `scripts/` directory.
+Copied files include the top-level `Makefile` and some helper programs and
+makefiles under `scripts/` directory.
 They were modified for simplisity because modules support are not necessary
 for general applications.
 
