@@ -1,0 +1,68 @@
+#
+# For a description of the syntax of this configuration file,
+# see Documentation/kbuild/kconfig-language.txt.
+#
+mainmenu "MYAPP Configuration"
+
+#config SRCARCH
+#	string
+#	option env="SRCARCH"
+
+#source "arch/$SRCARCH/Kconfig"
+
+config CROSS_COMPILE
+	string "Cross-compiler tool prefix"
+	help
+	  Same as running 'make CROSS_COMPILE=prefix-' but stored for
+	  default make runs in this kernel build directory.  You don't
+	  need to set this unless you want the configured kernel build
+	  directory to select the cross-compiler automatically.
+
+config ENABLE_LOGGING
+	bool "Enable log functions"
+	default y
+	help
+	  Say Y if you want to enable log functions, such as
+	  myapp_dbg, myapp_info, myapp_warn, myapp_err.
+	  If you say N here, those functions are not compiled.
+
+config DEFAULT_LOGLEVEL
+        int "Default message log level (1-4)"
+        range 1 4
+        default "3"
+	depends on ENABLE_LOGGING
+        help
+          Default priority level for log functions.
+	  Depending on this variable, each of log functions (myapp_err,
+	  myapp_warn, myapp_info, myapp_debug) output log messages
+	  to the console, or just return without doing anything.
+
+	  LOGLEVEL  myapp_err  myapp_warn  myapp_info  myapp_debug
+	     1          o          x           x           x
+	     2          o          o           x           x
+	     3          o          o           o           x
+	     4          o          o           o           o
+
+	  here, o: output log messages
+	        x: do nothing
+	  You can overwride this variable with environment variable
+	  "MYAPP_LOGLEVEL".
+
+config LOGGING_TIME
+	bool "Show timing information on log functions"
+	default y
+	depends on ENABLE_LOGGING
+	help
+	  Selecting this option causes timing information to be
+	  included in log output.
+
+config FOO
+	bool "Foo"
+	help
+	  foo.
+
+config BAR
+	bool "Bar"
+	depends on FOO
+	help
+	  bar.
