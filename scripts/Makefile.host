@@ -30,7 +30,7 @@
 # libkconfig.so as the executable conf.
 # Note: Shared libraries consisting of C++ files are not supported
 
-__hostprogs := $(sort $(hostprogs-y) $(hostprogs-m))
+__hostprogs := $(sort $(hostprogs-y))
 
 # C code
 # Executables compiled from a single .c file
