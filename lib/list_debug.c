@@ -21,11 +21,11 @@ void __list_add(struct list_head *new,
 			      struct list_head *next)
 {
 	if (next->prev != prev)
-		myapp_warn("list_add corruption. next->prev should be "
+		print_warn("list_add corruption. next->prev should be "
 			"prev (%p), but was %p. (next=%p).\n",
 			prev, next->prev, next);
 	if (prev->next != next)
-		myapp_warn("list_add corruption. prev->next should be "
+		print_warn("list_add corruption. prev->next should be "
 			"next (%p), but was %p. (prev=%p).\n",
 			next, prev->next, prev);
 	next->prev = new;
@@ -42,16 +42,16 @@ void __list_del_entry(struct list_head *entry)
 	next = entry->next;
 
 	if (next == LIST_POISON1)
-		myapp_warn("list_del corruption, %p->next is LIST_POISON1 (%p)\n",
+		print_warn("list_del corruption, %p->next is LIST_POISON1 (%p)\n",
 			entry, LIST_POISON1);
 	if (prev == LIST_POISON2)
-		myapp_warn("list_del corruption, %p->prev is LIST_POISON2 (%p)\n",
+		print_warn("list_del corruption, %p->prev is LIST_POISON2 (%p)\n",
 			entry, LIST_POISON2);
 	if (prev->next != entry)
-		myapp_warn("list_del corruption. prev->next should be %p, "
+		print_warn("list_del corruption. prev->next should be %p, "
 			"but was %p\n", entry, prev->next);
 	if (next->prev != entry)
-		myapp_warn("list_del corruption. next->prev should be %p, "
+		print_warn("list_del corruption. next->prev should be %p, "
 			"but was %p\n", entry, next->prev);
 
 	__list_del(prev, next);

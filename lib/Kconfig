@@ -3,7 +3,7 @@ config ENABLE_LOGGING
 	default y
 	help
 	  Say Y if you want to enable log functions, such as
-	  myapp_dbg, myapp_info, myapp_warn, myapp_err.
+	  print_dbg, print_info, print_warn, print_err.
 	  If you say N here, those functions are not compiled.
 
 config DEFAULT_LOGLEVEL
@@ -13,11 +13,11 @@ config DEFAULT_LOGLEVEL
 	depends on ENABLE_LOGGING
         help
           Default priority level for log functions.
-	  Depending on this variable, each of log functions (myapp_err,
-	  myapp_warn, myapp_info, myapp_debug) output log messages
+	  Depending on this variable, each of log functions (print_err,
+	  print_warn, print_info, print_debug) output log messages
 	  to the console, or just return without doing anything.
 
-	  LOGLEVEL  myapp_err  myapp_warn  myapp_info  myapp_debug
+	  LOGLEVEL  print_err  print_warn  print_info  print_debug
 	     1          o          x           x           x
 	     2          o          o           x           x
 	     3          o          o           o           x

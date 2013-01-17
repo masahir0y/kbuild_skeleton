@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <logging.h>
+#include <log.h>
 
 #ifdef CONFIG_LOGGING_TIME
 #include <sys/time.h>
@@ -31,7 +31,7 @@ static void print_logtime(FILE *stream)
 #define print_logtime(stream) do { (void)(stream); } while(0)
 #endif
 
-static void myapp_log_v(int level, const char *function, const char *format,
+static void print_log_v(int level, const char *function, const char *format,
 		va_list args)
 {
 	FILE *stream = stdout;
@@ -80,11 +80,11 @@ static void myapp_log_v(int level, const char *function, const char *format,
 	vfprintf(stream, format, args);
 }
 
-void myapp_log(int level, const char *function, const char *format, ...)
+void print_log(int level, const char *function, const char *format, ...)
 {
 	va_list args;
 
 	va_start (args, format);
-	myapp_log_v(level, function, format, args);
+	print_log_v(level, function, format, args);
 	va_end (args);
 }
